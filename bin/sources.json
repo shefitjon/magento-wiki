@@ -1,0 +1,81 @@
+{
+  "_comment": "Source list for fetch-sources.py. Each source has a type, a name (unique), and type-specific fields. URLs marked 'VERIFY' may need correction — the script handles fetch failures gracefully and logs them in each draft's 'Sources with errors' section. Remove sources that don't work or add your own.",
+
+  "hyva": [
+    {
+      "name": "hyva-theme-module-releases",
+      "type": "github-releases",
+      "repo": "hyva-themes/magento2-default-theme",
+      "note": "Hyvä default theme GitHub releases (VERIFY repo name — correct repo may differ)"
+    },
+    {
+      "name": "hyva-compat-module-releases",
+      "type": "github-releases",
+      "repo": "hyva-themes/magento2-compat-module-fallback",
+      "note": "Hyvä compat module releases (VERIFY repo name)"
+    },
+    {
+      "name": "markshust-blog",
+      "type": "html",
+      "url": "https://markshust.com/",
+      "note": "Mark Shust's blog homepage — HTML diff. Fires 'page changed' when he posts new content (fallback since RSS URL couldn't be found). Maintainer of markshust/docker-magento, writes about Magento/Hyvä/Alpine/Tailwind. High signal for this stack."
+    },
+    {
+      "name": "hyva-docs-home",
+      "type": "html",
+      "url": "https://docs.hyva.io/",
+      "note": "Hyvä docs homepage — HTML diff for 'page changed' detection"
+    }
+  ],
+
+  "magento": [
+    {
+      "name": "magento2-releases",
+      "type": "github-releases",
+      "repo": "magento/magento2",
+      "note": "Official Magento 2 GitHub releases (confirmed working — ~15 items per run)"
+    }
+  ],
+
+  "security": [
+    {
+      "name": "nvd-magento-cve",
+      "type": "nvd-cve",
+      "keywords": ["magento", "adobe commerce"],
+      "note": "NVD CVE feed for magento/adobe commerce keywords, last 14 days (confirmed free API)"
+    },
+    {
+      "name": "sansec-research",
+      "type": "html",
+      "url": "https://sansec.io/labs/",
+      "note": "Sansec labs page — HTML diff. THE highest-value Magento security source (discovers CVEs before Adobe acknowledges). Fires when the labs index changes. Manual click-through during Friday review."
+    }
+  ],
+
+  "adjacent": [
+    {
+      "name": "magewire-releases",
+      "type": "github-releases",
+      "repo": "magewirephp/magewire",
+      "note": "Magewire GitHub releases (confirmed)"
+    },
+    {
+      "name": "alpinejs-releases",
+      "type": "github-releases",
+      "repo": "alpinejs/alpine",
+      "note": "Alpine.js GitHub releases (confirmed)"
+    },
+    {
+      "name": "tailwindcss-releases",
+      "type": "github-releases",
+      "repo": "tailwindlabs/tailwindcss",
+      "note": "Tailwind CSS releases (confirmed)"
+    },
+    {
+      "name": "webdev-blog",
+      "type": "rss",
+      "url": "https://web.dev/feed.xml",
+      "note": "web.dev feed. VERIFY URL — may be different path."
+    }
+  ]
+}

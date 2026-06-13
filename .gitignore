@@ -1,0 +1,29 @@
+# =====================================================================
+# GitHub publish = ALLOWLIST. Ignore everything; publish ONLY the
+# non-confidential automation shell. All client/project state (raw/),
+# knowledge pages, plans, schema, and credentials stay LOCAL ONLY and
+# are never committed. To publish more later, add another `!` line.
+# =====================================================================
+
+# Ignore everything at the root by default
+/*
+
+# ...then explicitly allow only these
+!.gitignore
+!README.md
+!bin/
+
+# Within bin/: keep runtime artifacts, the client-naming review prompt,
+# and any local secrets OUT of the repo
+bin/logs/
+bin/reminders/
+bin/.fetch-state.json
+bin/weekly-review-prompt.md
+
+# Local-only secrets / preserved originals (belt-and-suspenders)
+*.local.md
+.secrets/
+secrets.local.md
+
+# Never commit AI-authored subagent memory
+**/.claude/agent-memory/
