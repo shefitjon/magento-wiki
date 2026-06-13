@@ -395,12 +395,19 @@ def run_category(cat: str, sources, state, dry_run: bool) -> tuple[int, int]:
 
 
 def main():
+    available_cats = []
+    if SOURCES_FILE.exists():
+        available_cats = [
+            c for c in strip_comment_keys(load_json(SOURCES_FILE, {})).keys()
+            if not c.startswith("_")
+        ]
+
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--category",
         required=True,
-        choices=["hyva", "magento", "security", "adjacent", "all"],
-        help="Source category to fetch",
+        choices=available_cats + ["all"],
+        help="Source category to fetch (categories read from sources.json)",
     )
     parser.add_argument(
         "--dry-run",

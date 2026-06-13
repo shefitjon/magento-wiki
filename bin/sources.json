@@ -52,6 +52,15 @@
     }
   ],
 
+  "creators": [
+    {
+      "name": "nate-herk-youtube",
+      "type": "atom",
+      "url": "https://www.youtube.com/feeds/videos.xml?channel_id=UC2ojq-nuP8ceeHqiroeKhBA",
+      "note": "Nate Herk | AI Automation — YouTube channel Atom feed (no API key). New videos on Claude Code skills/subagents/agent architectures. channel_id resolved 2026-06-13. Skool + LinkedIn are NOT auto-fetchable (no public RSS); glance at them manually during the Friday review if a video references new gated material."
+    }
+  ],
+
   "adjacent": [
     {
       "name": "magewire-releases",
