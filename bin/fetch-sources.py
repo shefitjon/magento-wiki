@@ -20,6 +20,7 @@ import argparse
 import datetime
 import hashlib
 import json
+import subprocess
 import sys
 import urllib.error
 import urllib.parse
@@ -52,6 +53,21 @@ def iso_week_folder() -> str:
 
 
 def fetch_url(url: str) -> bytes:
+    # curl-first: it's bounded by -m and reliable everywhere (some network stacks
+    # hang Python's urllib past its own timeout). Fall back to stdlib urllib only
+    # if curl isn't installed, so the script still works without it.
+    try:
+        out = subprocess.run(
+            ["curl", "-fsSL", "-m", str(HTTP_TIMEOUT), "-A", USER_AGENT, url],
+            capture_output=True, timeout=HTTP_TIMEOUT + 10,
+        )
+        if out.returncode == 0 and out.stdout:
+            return out.stdout
+        raise RuntimeError(
+            f"curl exit {out.returncode}: {out.stderr.decode('utf-8', 'replace')[:200]}"
+        )
+    except FileNotFoundError:
+        pass
     req = urllib.request.Request(
         url, headers={"User-Agent": USER_AGENT, "Accept": "*/*"}
     )
